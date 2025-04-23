@@ -4,8 +4,18 @@
 
 * Move into the gnuhealth container file directory
 
-`cd container`
+`cd gnu-health-containerfile`
 
 * Build the container image by running the following command:
 
-`podman build `
+`podman build . -f Containerfile -t gnuhealth:v44`
+
+* Verify that the container image has been created locally
+
+```
+$ podman images
+REPOSITORY                               TAG               IMAGE ID      CREATED         SIZE
+localhost/gnuhealth                      v44               07d948c82ced  20 minutes ago  2.45 GB
+```
+
+
