@@ -1,0 +1,18 @@
+Unit]
+Description=Postgres - The world's most advanced Open Source relational database
+
+[Container]
+Label=app=postgresapps
+Image=docker.io/library/postgres:16.4
+Volume=/volumes/postgresql/data:/var/lib/postgresql/data:Z
+PublishPort=5432:5432/tcp
+Network=postgresapps.network
+Secret=postgres_password,type=env,target=POSTGRES_PASSWORD
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target default.target
