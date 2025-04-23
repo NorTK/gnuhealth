@@ -22,7 +22,26 @@ localhost/gnuhealth                      v44               07d948c82ced  20 minu
 
 - Create the podman secret for the postgres quadlet
 
-_Note:_ The reason for having the secret in a _vulnerable plain text file_ is for the solely purpose of not having the password typed in the console and -thus- appear in the command history.
+**_Note:_** The reason for having the secret in a **vulnerable plain text file** is for the solely purpose of not having the password typed in the console and -thus- appear in the command history.
 This is an insecure not sanctioned practice and MUST NOT be implemented in productive environments.
 
 `cat postgres_password.txt | podman secret create postgres_password -`
+
+If having the secret creation in the command history is not an issue, the following command may be used alternatively:
+
+`echo gnusolidario | podman secret create postgres_password -`
+
+- Make sure that quadlets directory exists
+
+`mkdir -p $HOME/.config/containers/systemd`
+
+- Move quadlets to systemd directory
+
+```
+cp *.container $HOME/.config/containers/systemd/
+cp *.network $HOME/.config/containers/systemd/
+```
+
+- Invoke systemd daemon reload
+
+`systemctl --user daemon-reload`
