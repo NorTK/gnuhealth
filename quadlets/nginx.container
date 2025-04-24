@@ -1,0 +1,19 @@
+Unit]
+Description=Postgres - The world's most advanced Open Source relational database
+
+[Container]
+Label=app=postgresapps
+Image=docker.io/library/nginx:1.25.4
+PublishPort=8080:80
+Volume=web-site:/etc/nginx/conf.d
+Volume=web-log:/var/log/nginx
+
+Network=postgresapps.network
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target default.target
