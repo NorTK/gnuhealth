@@ -1,0 +1,20 @@
+Unit]
+Description=Gnuhealth - The libre digital health ecosystem
+
+[Container]
+Label=app=postgresapps
+Image=localhost/gnuhealth
+
+Volume=app-data:/opt/gnuhealth/var/lib
+Volume=app-log:/opt/gnuhealth/var/log
+
+Network=postgresapps.network
+#Secret=postgres_password,type=env,target=POSTGRES_PASSWORD
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+# Start by default on boot
+WantedBy=multi-user.target default.target
