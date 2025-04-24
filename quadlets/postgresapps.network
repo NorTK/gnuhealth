@@ -1,0 +1,5 @@
+[Unit]
+Description=Network for Apps that use Postgres
+
+[Network]
+Label=app=postgresapps
