@@ -12,7 +12,7 @@
 
 - Verify that the container image has been created locally
 
-```
+```bash
 $ podman images
 REPOSITORY                               TAG               IMAGE ID      CREATED         SIZE
 localhost/gnuhealth                      v44               07d948c82ced  20 minutes ago  2.45 GB
@@ -22,7 +22,8 @@ localhost/gnuhealth                      v44               07d948c82ced  20 minu
 
 - Create the podman secret for the postgres quadlet
 
-**_Note:_** The reason for having the secret in a **vulnerable plain text file** is for the solely purpose of not having the password typed in the console and -thus- appear in the command history.
+[!NOTE]
+The reason for having the secret in a **vulnerable plain text file** is for the solely purpose of not having the password typed in the console and -thus- appear in the command history.
 This is an insecure not sanctioned practice and MUST NOT be implemented in productive environments.
 
 `cat postgres_password.txt | podman secret create postgres_password -`
@@ -37,7 +38,7 @@ If having the secret creation in the command history is not an issue, the follow
 
 - Move quadlets to systemd directory
 
-```
+```bash
 cp *.container $HOME/.config/containers/systemd/
 cp *.network $HOME/.config/containers/systemd/
 ```
